@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "meeting-mind"
+version = "0.1.0"
+description = ""
+authors = ["Caio Almeida <mcalm.139@gmail.com>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+fastapi = {extras = ["standard"], version = "^0.121.0"}
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.14.3"
+taskipy = "^1.14.1"
+pytest = "^8.4.2"
+pytest-cov = "^7.0.0"
+
+[tool.ruff]
+line-length = 79
+extend-exclude = ['migrations']
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.pytest.ini_options]
+pythonpath = '.'
+addopts = '-p no:warnings'
+
+[tool.taskipy.tasks]
+run = 'fastapi dev src/api/main.py'
+pre_test = 'task lint'
+test = 'pytest --cov=fast_scratch -vv'
+post_test = 'coverage html'
+lint = 'ruff check . ; ruff check . --diff'
+format = 'ruff check . --fix ; ruff format .'
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
