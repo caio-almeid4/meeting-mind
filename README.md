@@ -1,8 +1,9 @@
-Objetivo: Aprender backend/infra construindo transcritor de reuniões
+Goal: Learn backend/infra building a meeting transcriber.
 
-Data início: 06/11/2025
+Initial date: 06/11/2025
 
-Data fim:
+Final date:
 
 Stack: FastAPI, PostgreSQL, Whisper, OpenAI, Docker, AWS
+
 
